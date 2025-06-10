@@ -1,0 +1,28 @@
+1. Write a query to select all columns from the 'employees' table.
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    position VARCHAR(100),
+    department VARCHAR(100),
+    salary DECIMAL(10, 2),
+    hire_date DATE
+);
+    
+INSERT INTO employees (id, first_name, last_name, position, department, salary, hire_date) VALUES
+(1, 'Alice', 'Johnson', 'Software Engineer', 'IT', 85000.00, '2020-03-15'),
+(2, 'Bob', 'Smith', 'Project Manager', 'Operations', 95000.00, '2018-07-22'),
+(3, 'Carol', 'Davis', 'Data Analyst', 'Marketing', 72000.00, '2019-11-03'),
+(4, 'David', 'Miller', 'HR Specialist', 'Human Resources', 60000.00, '2021-01-10'),
+(5, 'Eva', 'Brown', 'Sales Executive', 'Sales', 67000.00, '2022-05-30');
+SELECT * from employees
+
+Explanation: SELECT is used to show the data while * indicates all columns
+
+
+2. Write a query to select 'first_name' and 'salary' from 'employees' where salary >
+50000
+ SELECT first_name,salary from employees 
+ where salary>50000;
+Explanation: Where command Is used for filtering based on the condition
+
