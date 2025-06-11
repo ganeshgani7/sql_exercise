@@ -1,14 +1,5 @@
 1. Write a query to select all columns from the 'employees' table.
-CREATE TABLE employees (
-    id INT PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    position VARCHAR(100),
-    department VARCHAR(100),
-    salary DECIMAL(10, 2),
-    hire_date DATE
-);
-    
+CREATE TABLE employees ( id INT PRIMARY KEY,  first_name VARCHAR(50), last_name VARCHAR(50), position VARCHAR(100),department VARCHAR(100),salary DECIMAL(10, 2),hire_date DATE); 
 INSERT INTO employees (id, first_name, last_name, position, department, salary, hire_date) VALUES
 (1, 'Alice', 'Johnson', 'Software Engineer', 'IT', 85000.00, '2020-03-15'),
 (2, 'Bob', 'Smith', 'Project Manager', 'Operations', 95000.00, '2018-07-22'),
@@ -20,16 +11,98 @@ Query:
     SELECT * from employees
 
 Explanation: 
-    SELECT is used to show the data while * indicates all columns
+    SELECT is used to show the data while * is used display all columns.
 
 
 2. Write a query to select 'first_name' and 'salary' from 'employees' where salary >
 50000
-Query:
-    SELECT first_name,salary from employees where salary>50000;
+    Query:
+        SELECT first_name,salary from employees where salary>50000;
 
 Explanation:     
-    Where command is used to filter data based on the specified condition.
+        Where command is used to filter data based on the special condition.
+
+3.retrieve all records from the departments table where department_name is sales.
+    Query:
+        Select*from department where department_name = 'sales';
+Explanation: 
+'select' is used to show the data.'where' is used to filter the data on the specific condition and '=' is used to compare the data
+
+4.List all employees whose names start with 'A
+    Query:
+            select * from employee where employee_name LIKE A%;
+    Explanation:
+            Like is used to start for the string and % is used to start sequence of the character.
+5.Display unqiue job titles from the 'jobs' table.
+    query:
+            SELECT DISTINCT job_title 
+            FROM jobs;
+    Explanation:
+        'DISTINCT' is used to eliminate duplicates .'FROM' is used for take that particular column
+6.Count how many employees are in each department.
+    query:
+        SELECT department_id, COUNT(*) AS employee_count
+        FROM employees
+        GROUP BY department_id;
+    Explanation:
+        Count(*) is used for counts all employees in each group
+        Group BY is used for Groups the records by department so the count is calculated per department.
+
+    7. Find the average salary in each department.
+        query:
+            SELECT department_id, AVG(salary) AS average_salary
+            FROM employees
+            GROUP BY department_id;
+        Explanation:
+           'AVG(Salary)' calculates the average salary of employees in each department.
+           group by department_id groups the data department-wise so the average can be computed per department.
+            as average_salary gives a readable name to the result column.
+    8. List employees ordered by hire_date descending.
+    query:
+        SELECT * FROM employees 
+        ORDER BY hire_date DESC;
+    Explanation:
+        selecting all from employees table and it is order by descding order
+    9. Retrieve all departments that have more than 5 employees.
+    query:
+        SELECT department_id, COUNT(*) AS employee_count FROM employees
+        GROUP BY department_id
+        HAVING COUNT(*) > 5;
+Explanation:
+    having is used instead of where because filtering after aggression
+    10. Display employee names in uppercase.
+    query:
+        SELECT UPPER(employee_name) AS uppercase_name
+        FROM employees;
+Explanation:
+        while we're using the uppercase command the whole name will displayed in the uppercase.
+    11. Show the length of each employee's first name.
+        query:
+            SELECT employee_name, LENGTH(employee_name) AS name_length
+            FROM employees;
+    explanation:
+        'LENGTH' command is used to difine the length of the name.
+    12. Show salary difference between highest and lowest paid employee.
+        query:
+            SELECT MAX(salary) - MIN(salary) AS salary_difference
+            FROM employees;
+        Explanation:
+                MAX is for display the highest salary
+                MIN is for display the lowest salary between the employees.
+    13. Show all employees whose name contains the letter 'e'.
+        query:
+            SELECT * FROM employees 
+            WHERE employee_name LIKE '%e%';
+        Explanation:
+            
+
+
+
+
+
+
+    
+
 
 
 
