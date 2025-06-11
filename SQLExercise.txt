@@ -94,6 +94,102 @@ Explanation:
             SELECT * FROM employees 
             WHERE employee_name LIKE '%e%';
         Explanation:
+            %e% is to get the aleast one e in the name it will be display the names.
+    14. Write a query to find employees with NULL commission_pct.
+        query:
+            SELECT * FROM employees 
+            WHERE commission_pct IS NULL;
+        Explanation:
+            Null is used to check the null values in sql and this display all are having null value.
+    15. Write an INNER JOIN between 'employees' and 'departments' on department_id.
+        query:
+            SELECT e.employee_id, e.employee_name, e.department_id, d.department_name
+            FROM employees e
+            INNER JOIN departments d
+            ON e.department_id = d.department_id;
+        Explanation:
+            Inner join is used to Returns only the rows where there is a match in both tables.
+    16. Use LEFT JOIN to find employees even if they are not assigned to any department.
+        query:
+            SELECT e.employee_id, e.employee_name, e.department_id, d.department_name
+            FROM employees e
+            LEFT JOIN departments d
+            ON e.department_id = d.department_id;
+        Explanation:
+            Returns all rows from the employees table, and matching rows from the departments table.
+    17. List employee names along with their manager names using a self join.
+        query:
+            SELECT 
+    e.employee_name AS employee,
+    m.employee_name AS manager
+    FROM employees e
+   LEFT JOIN  employees m
+   ON  e.manager_id = m.employee_id;
+    explanation:
+        e represents employee
+        m represents manager
+        Ensures employees without a manage are still included, with NULL as their manager name
+    18. Write a query using RIGHT JOIN between 'jobs' and 'employees'.
+    query:
+        SELECT *FROM jobs j
+        RIGHT JOIN employees e
+        ON j.job_id = e.job_id;
+    Explanation:
+        return all form the employee table and matching rows from the jobs table.
+        two joins on the table base.
+19. Perform a FULL OUTER JOIN between 'departments' and 'employees'
+    query:
+SELECT 
+    d.department_id,
+    d.department_name,
+    e.employee_id,
+    e.employee_name
+FROM 
+    departments d
+LEFT JOIN 
+    employees e ON d.department_id = e.department_id
+
+UNION
+
+SELECT 
+    d.department_id,
+    d.department_name,
+    e.employee_id,
+    e.employee_name
+FROM 
+    departments d
+RIGHT JOIN 
+    employees e ON d.department_id = e.department_id;
+Explanation:
+First select left join get all departments and their employees, second select right join get all employees and their departments and then union combines both joins and removes duplicate and then create full outer join.
+20.Show total salary paid per job_id.
+query:
+    SELECT job_id, 
+    SUM(salary) AS total_salary
+    FROM employees
+    GROUP BY job_id;
+    explanation:
+    Adds all form the each table
+    group the records form the job role
+21. Find the department with the maximum total salary.
+query:
+    SELECT department_id, 
+    SUM(salary) AS total_salary
+    FROM  employees
+    GROUP BY   department_id
+    ORDER BY total_salary DESC
+    LIMIT 1;
+Explanation:
+    select the department id and Calucalte the total salary for each department
+
+    
+
+
+
+
+        
+
+
             
 
 
