@@ -380,7 +380,10 @@ query:
   DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS dense_rank
     FROM employees;
 Explanation:
-    DENSE_RANK() assigns ranks to employees by salary within each department, just like RANK(). But unlike RANK(), it doesn’t skip ranks if there are ties. So if two employees tie for 1st place, the next rank is 2 (not 3). This gives a continuous ranking without gaps.
+    This ranks employees by salary within each department.
+    Employees with the same salary get the same rank, and ranks stay in order with no gaps.
+
+    
         
 
         
