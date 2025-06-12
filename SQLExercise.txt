@@ -180,7 +180,167 @@ query:
     ORDER BY total_salary DESC
     LIMIT 1;
 Explanation:
-    select the department id and Calucalte the total salary for each department
+This SQL query groups salaries by department, sums them up, and orders by the highest total.
+It then returns the department with the maximum total `querysalary` using `LIMIT 1`.
+22. Display departments with average salary above 60000.
+query:
+    SELECT department, AVG(querysalary) AS avg_salary
+    FROM your_table
+    GROUP BY department
+    HAVING AVG(querysalary) > 60000;
+Explanation:
+This query calculates the average salary per department and filters only those where the average is above 60,000 using the `HAVING` clause.
+23.Count number of employees in each job group.
+query:
+    SELECT job_group, COUNT(*) AS employee_count
+    FROM your_table
+    GROUP BY job_group;
+24. List all job titles with their maximum and minimum salary.
+query:
+    SELECT job_title, MAX(querysalary) AS max_salary, MIN(querysalary) AS min_salary
+    FROM your_table
+    GROUP BY job_title;
+Explanation:
+    The query groups data by job title and used max and min to find the highest and lowest salaries for each title.
+25. Find employees earning more than the average salary.
+Query:
+    SELECT *FROM your_table
+    WHERE querysalary > (SELECT AVG(querysalary) FROM your_table);
+Explanation:
+    The query selects employees whose salary is greater than the overall average salary, calculated using a subquery.
+26. List departments where the maximum salary is over 100000.
+Query:
+    SELECT department FROM your_table
+    GROUP BY department
+    HAVING MAX(querysalary) > 100000;
+Explanation:
+The query groups the data by department and uses HAVING condition to return only those where the highest salary excting 100,000.
+27. Get names of employees who work in the same department as 'John'.
+ Query:
+    SELECT name FROM your_table
+    WHERE department = (SELECT department FROM your_table
+    WHERE name = 'John');
+Explanation:
+     query finds all employees whose department matches the one that john works in using a subquery to get Johns department.
+28. List employees who are not managers (no one reports to them).
+Query:
+    SELECT *FROM your_table
+    WHERE employee_id NOT IN (SELECT manager_id
+    FROM your_table
+    WHERE manager_id IS NOT NULL);
+Explanation:
+    This query selects employees whose employee id is not listed as a manager id for anyone else no one reports to them.
+29. Find employees hired before their managers.
+Query:
+    SELECT e.name AS employee_name, e.hire_date AS employee_hire_date, m.name AS manager_name, m.hire_date AS manager_hire_date
+    FROM your_table e
+    JOIN your_table m ON e.manager_id = m.employee_id
+    WHERE e.hire_date < m.hire_date;
+Explantion:
+    This query joins employees with their managers and lists those employees whose hire date is earlier than their manager’s hire date.
+30. Concatenate first_name and last_name as 'Full Name'.
+    query:
+        SELECT CONCAT(first_name, ' ', last_name) AS "Full Name"
+        FROM your_table;
+Explanation:
+    This query combines first name and last name with a space in between to create a single column called Full Name.
+31. Extract the month from hire_date.
+    Query:
+        SELECT CONCAT(first_name, ' ', last_name) AS "Full Name"
+        FROM your_table;
+Explanation:
+    This query combines first name and last name with a space in between to create a single column called Full Name.
+32. Show current system date and time.
+Query:
+    SELECT CURRENT_TIMESTAMP AS current_date_time;
+Explanation:
+This query retrieves the current system date and time using the CURRENT TIMESTAMP function.
+33. Round all salaries to 2 decimal places.
+Query:
+    SELECT ROUND(querysalary, 2) AS rounded_salary
+    FROM your_table;
+Explanation:
+This query rounds the querysalary values to 2 decimal places using the ROUND() function.
+34. Display absolute difference in salaries between two employees.
+Query:
+    SELECT ABS(e1.querysalary - e2.querysalary) AS salary_difference
+    FROM your_table e1, your_table e2
+    WHERE e1.employee_id = :employee_id_1
+     AND e2.employee_id = :employee_id_2;
+Explanation:
+ query calculates the absolute difference between the salaries of two employees identified by their IDs using the ABS function.
+35.List employees with salary between 50000 and 80000.
+Query:
+    SELECT *FROM your_table
+    WHERE querysalary BETWEEN 50000 AND 80000;
+Explanation:
+ query selects employees whose salaries fall within the range of 50,000 to 80,000 using the BETWEEN operator.
+36. Create a table named 'projects' with columns: id, name, start_date.
+Query:
+    CREATE TABLE projects (id INT PRIMARY KEY,name VARCHAR(100),start_date DATE);
+Explantion:
+This query creates a projects table with an integer id as the primary key name column for project names and a start date column for the project’s start date.
+37. Add a NOT NULL constraint to 'start_date' in 'projects'.
+    Query:
+        ALTER TABLE projects
+        MODIFY start_date DATE NOT NULL;
+Explanation:
+    This query modifies the `start_date` column in the `projects` table to add a `NOT NULL` constraint, ensuring every project must have        a start date.
+38. Insert a record into 'projects' table.
+     Query:
+        INSERT INTO projects (id, name, start_date)
+        VALUES (1, 'Project Alpha', '2025-06-12');
+Explanation:
+     query inserts a new project record with id 1 name Project Alpha and start date June 12 2025 into the projects table.
+39. Delete a project with id = 3 from 'projects'.
+    Query:
+        DELETE FROM projects WHERE id = 3;
+Explanation:
+ query deletes the project record from the projects table where the id is 3.
+40. Alter 'projects' to add column 'status' with default 'active'.
+Query:
+    ALTER TABLE projects
+    ADD COLUMN status VARCHAR(20) DEFAULT 'active';
+Explanation:
+ query adds a new column status to the projects table with a default value of active for all existing and new records.
+
+
+
+
+
+    
+
+
+
+
+
+
+        
+
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+
+
 
     
 
